@@ -1,10 +1,9 @@
+__pycache__/
 *.pyc
 .env
 .env.*
 .venv/
 dist/
 node_modules/
-.DS_Store
-
-# Build artifacts
 *.egg-info/
+.DS_Store
