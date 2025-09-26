@@ -1,4 +1,4 @@
-from collections.abc import Awaitable, Callable  # NEW
+from collections.abc import Awaitable, Callable
 from typing import Annotated, Literal
 
 from fastapi import Depends, FastAPI, HTTPException, status
@@ -24,8 +24,8 @@ async def get_current_user() -> UserCtx:
 UserDep = Annotated[UserCtx, Depends(get_current_user)]
 
 
-def require_role(*allowed: Role) -> Callable[[UserDep], Awaitable[UserCtx]]:  # NEW
-    async def guard(user: UserDep) -> UserCtx:  # NEW return type
+def require_role(*allowed: Role) -> Callable[[UserDep], Awaitable[UserCtx]]:
+    async def guard(user: UserDep) -> UserCtx:
         if user.role not in allowed:
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Forbidden")
         return user
@@ -34,7 +34,7 @@ def require_role(*allowed: Role) -> Callable[[UserDep], Awaitable[UserCtx]]:  # 
 
 
 @app.get("/me")
-async def me(user: UserDep) -> UserCtx:  # NEW return type
+async def me(user: UserDep) -> UserCtx:
     return user
 
 
@@ -44,5 +44,5 @@ class LoginReq(BaseModel):
 
 
 @app.post("/auth/login")
-async def login(_: LoginReq) -> dict[str, str]:  # NEW return type
+async def login(_: LoginReq) -> dict[str, str]:
     return {"access_token": "stub", "token_type": "bearer"}
