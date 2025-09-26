@@ -1,0 +1,10 @@
+*.pyc
+.env
+.env.*
+.venv/
+dist/
+node_modules/
+.DS_Store
+
+# Build artifacts
+*.egg-info/
